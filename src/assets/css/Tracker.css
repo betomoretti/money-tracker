@@ -1,0 +1,19 @@
+.tracker--container {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.tracker--container table {
+  border: 1px solid black;
+  width: 100%;
+  text-align: left;
+}
+
+.tracker--container thead {
+  color: black;
+}
+
+.tracker--container tbody {
+  color: #524545;
+}
