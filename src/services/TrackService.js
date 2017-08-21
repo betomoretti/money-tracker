@@ -18,7 +18,9 @@ class TrackService {
   }
 
   update(updatedTrack) {
-    this._tracks[updatedTrack.id] = { ...this._tracks[updatedTrack.id], ...updatedTrack }
+    const clonedTracks = {...this._tracks};
+    clonedTracks[updatedTrack.id] = Object.assign({}, clonedTracks[updatedTrack.id], updatedTrack)
+    this._tracks = clonedTracks;
 
     return this._tracks;
   }
