@@ -7,12 +7,10 @@ import Track from './Track';
 class Tracker extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      tracks: TrackService.get(),
-      editing: false
+    this.state = {
+      tracks: TrackService.get()
     }
     this.update = this.update.bind(this);
-    this.changeEditingState = this.changeEditingState.bind(this);
   }
 
   update(track) {
@@ -20,22 +18,17 @@ class Tracker extends Component {
     this.setState({ tracks: updatedTracks});
   }
 
-  changeEditingState(value) {
-    this.setState({ editing: value })
-  }
-
   render() {
-    const { tracks } = this.state; 
-    // const trackComponents = tracks
-    //   .map((x, index) => {
-    //     return <Track 
-    //               key={index} 
-    //               track={x} 
-    //               changeEditingState={this.changeEditingState} 
-    //               updateTrack={this.update}
-    //               editing={this.state.editing}
-    //             />
-    //   }); 
+    const { tracks } = this.state;
+    const trackComponents = Object
+      .keys(tracks)
+      .map((idTrack, index) => {
+        return <Track
+                  key={index}
+                  track={tracks[idTrack]}
+                  updateTrack={this.update}
+                />
+      });
 
     return (
         <table>
@@ -48,6 +41,7 @@ class Tracker extends Component {
             </tr>
           </thead>
           <tbody>
+            { trackComponents }
           </tbody>
           <tfoot>
             <tr>

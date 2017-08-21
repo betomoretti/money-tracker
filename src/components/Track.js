@@ -11,19 +11,19 @@ class Track extends Component {
   }
 
   handleEditingChange() {
-    this.props.changeEditingState(!this.props.editing);
+    this.setState({editing: !this.state.editing})
   }
 
   handleChange(e) {
     const updatedTrack = {}
     updatedTrack[e.target.name] = e.target.value ;
-    updatedTrack['id'] = this.props.id;
+    updatedTrack['id'] = this.props.track.id;
     this.props.updateTrack(updatedTrack)
   }
 
   render() {
     let { id, name, amount } = this.props.track;
-    if (!this.props.editing) {
+    if (!this.state.editing) {
       return (
         <tr>
           <td>{id}</td>
@@ -35,18 +35,18 @@ class Track extends Component {
           </td>
         </tr>
       );
-    } 
+    }
     return (
         <tr>
           <td>{id}</td>
-          <td><input ref={(input) => this.name = input.value} type="text" name="name" value={name} onChange={this.handleChange}/></td>
-          <td><input ref={(input) => this.amount = input.value} type="text" name="amount" value={amount} onChange={this.handleChange}/></td>
+          <td><input type="text" name="name" value={name} onChange={this.handleChange}/></td>
+          <td><input type="text" name="amount" value={amount} onChange={this.handleChange}/></td>
           <td>
             <input type="submit" value='Save'/>
             <div onClick={this.handleEditingChange}>cancel</div>
           </td>
         </tr>
-    ) 
+    )
   }
 }
 
