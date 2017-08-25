@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../assets/css/Tracker.css';
 import TrackService from '../services/TrackService';
 import Track from './Track';
+import AddTrack from './AddTrack';
 
 
 class Tracker extends Component {
@@ -11,11 +12,17 @@ class Tracker extends Component {
       tracks: TrackService.get()
     }
     this.update = this.update.bind(this);
+    this.add = this.add.bind(this);
   }
 
   update(track) {
     const updatedTracks = TrackService.update(track);
     this.setState({ tracks: updatedTracks});
+  }
+
+  add(track) {
+    const tracks = TrackService.add(track);
+    this.setState({ tracks });    
   }
 
   render() {
@@ -44,12 +51,7 @@ class Tracker extends Component {
             { trackComponents }
           </tbody>
           <tfoot>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>add</td>
-            </tr>
+            <AddTrack addTrack={this.add}/>
           </tfoot>
         </table>
     );

@@ -12,6 +12,15 @@ class TrackService {
       amount: '201'
     };
   };
+  
+  add(track) {
+    this._tracks[`track-${Date.now() + 1}`] = {
+      id: `track-${Date.now() + 1}`,
+      ...track
+    }
+
+    return this._tracks;
+  }
 
   get() {
     return this._tracks;

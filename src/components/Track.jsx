@@ -24,6 +24,7 @@ class Track extends Component {
   render() {
     let { id, name, amount } = this.props.track;
     if (!this.state.editing) {
+    
       return (
         <tr>
           <td>{id}</td>
@@ -42,8 +43,8 @@ class Track extends Component {
           <td><input type="text" name="name" value={name} onChange={this.handleChange}/></td>
           <td><input type="text" name="amount" value={amount} onChange={this.handleChange}/></td>
           <td>
-            <input type="submit" value='Save'/>
-            <div onClick={this.handleEditingChange}>cancel</div>
+            <div onClick={this.handleEditingChange}>Save</div>
+            <div>cancel</div>
           </td>
         </tr>
     )
